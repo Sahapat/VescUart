@@ -32,7 +32,7 @@ int VescUart::receiveUartMessage(uint8_t * payloadReceived) {
 		resetUartReceiver();
 		if (debugPort != NULL)
 		{
-			debugPort->println("Timeout");
+			debugPort->println("receiveUartMessage Timeout");
 		}
 	}
 
@@ -74,6 +74,7 @@ int VescUart::receiveUartMessage(uint8_t * payloadReceived) {
 				{
 					debugPort->println("Unvalid start bit");
 				}
+				receiveByteCounter = 0;
 				break;
 			}
 		}
