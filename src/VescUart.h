@@ -194,6 +194,7 @@ class VescUart
      * Use in receiveUartMessage function;
     */
     bool isReadCompleted = false;
+    bool isFoundInvalidStartBit = false;
     unsigned long timeoutCounter = 0;
     uint16_t receiveByteCounter = 0;
     uint16_t endBytSize = 256;

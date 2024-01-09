@@ -44,7 +44,7 @@ int VescUart::receiveUartMessage(uint8_t * payloadReceived) {
 	{
 		int byt = serialPort->read();
 
-		if (receiveByteCounter >= sizeof(bytesReceived))
+		if (receiveByteCounter >= sizeof(bytesReceived) || (isFoundInvalidStartBit && byt == 3))
 		{
 			resetUartReceiver();
 			break;
@@ -74,7 +74,7 @@ int VescUart::receiveUartMessage(uint8_t * payloadReceived) {
 				{
 					debugPort->println("Unvalid start bit");
 				}
-				receiveByteCounter = 0;
+				isFoundInvalidStartBit = true;
 				break;
 			}
 		}
