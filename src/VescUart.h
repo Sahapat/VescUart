@@ -190,6 +190,21 @@ class VescUart
 		  * Uses the class Stream instead of HarwareSerial */
 		Stream* debugPort = NULL;
 
+    /** Variables to storing the reading states
+     * Use in receiveUartMessage function;
+    */
+    bool isReadCompleted = false;
+    unsigned long timeoutCounter = 0;
+    uint16_t receiveByteCounter = 0;
+    uint16_t endBytSize = 256;
+    uint16_t receivePayloadSize = 0;
+    uint8_t bytesReceived[256];
+
+    /**
+     * @brief      Reset receive UART Variables
+    */
+    void resetUartReceiver();
+
 		/**
 		 * @brief      Packs the payload and sends it over Serial
 		 *
